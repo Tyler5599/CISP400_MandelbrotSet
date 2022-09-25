@@ -1,6 +1,7 @@
 #include "ComplexPlane.h"
 #include <SFML/Graphics.hpp>
 #include <sstream>
+#include <ccomplex>
 
 using namespace std;
 using namespace sf;
@@ -40,10 +41,11 @@ void ComplexPlane::setMouseLocation(Vector2f coord)
 	m_mouseLocation = coord;
 }
 
-View cgetView()
+View ComplexPlane::getView()
 {
-	//code
+	return m_view;
 }
+
 void ComplexPlane::loadText(Text&)
 {
 	Text;
@@ -51,10 +53,18 @@ void ComplexPlane::loadText(Text&)
 	mystream << "Mandelbrot Set" << endl << "Center: (0,0)" << endl << "Cursor: (" << m_mouseLocation.x << "," << m_mouseLocation.y << ")" << endl 
 	<< "Left-click to Zoom in" << endl << "Right-click to Zoom out" << endl;
 }
+
 size_t ComplexPlane::countIterations(Vector2f)
 {
-	//code
+	//not done yet dont understand instructions
+	for (int i = 0; i < 64; i++)
+	{
+		complex<double> c(Vector2f().x, Vector2f().y);
+		complex<double> z(0, 0);
+		z = z * z = c;
+	}
 }
+
 void ComplexPlane::iterationsToRGB(size_t count, Uint8 r, Uint8 g, Uint8 b)
 {
 	//code

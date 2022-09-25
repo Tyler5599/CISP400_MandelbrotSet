@@ -9,14 +9,23 @@ int main()
 {
 	//variables
 	float aspect, width, height;
+	ComplexPlane plane1(aspect);
+	VertexArray ourArray(Points, width * height);
+	enum class States
+	{
+		CALCULATING, DISPLAYING
+	};
+	States::CALCULATING;
+
 	//calculating aspect ratio by dividing or values that were rturned from get width and height functions
 	width =	VideoMode::getDesktopMode().width;
 	height = VideoMode::getDesktopMode().height;
 	aspect = height / width;
 
+	//render window
 	VideoMode vm(1920, 1080);
 	RenderWindow window(vm, "Mandelbrot!!!", Style::Default);
-	ComplexPlane plane1(aspect);
+	//add font
 	sf::Font font;
 	if (!font.loadFromFile("arial.ttf"))
 	{
@@ -26,16 +35,12 @@ int main()
 	text1.setFont(font);
 	text1.setCharacterSize(30);
 	text1.setStyle(sf::Text::Regular);
-	VertexArray ourArray(Points,width*height);
-	enum class States
-	{
-		CALCULATING, DISPLAYING
-	};
-	States::CALCULATING;
+
+	//main loop
 	while (window.isOpen())
 	{
 		//Process events
-			sf::Event event;
+		sf::Event event;
 		while (window.pollEvent(event))
 		{
 			// Close window: exit
