@@ -57,15 +57,46 @@ void ComplexPlane::loadText(Text&)
 size_t ComplexPlane::countIterations(Vector2f)
 {
 	//not done yet dont understand instructions
-	for (int i = 0; i < 64; i++)
+	
+	int count = 0;
+	
+	for (int i = 0; i < MAX_ITER; i++)
 	{
 		complex<double> c(Vector2f().x, Vector2f().y);
 		complex<double> z(0, 0);
-		z = z * z = c;
+		if (c != 2.0)
+		{
+			z = z * z + c;
+			count++;
+		}		
 	}
+	return count;
 }
 
 void ComplexPlane::iterationsToRGB(size_t count, Uint8 r, Uint8 g, Uint8 b)
 {
-	//code
+	if (count == 1)
+	{
+		//code for 1 iteration
+	}
+	else if (count > 1 && count <= 16)
+	{
+		//code for 2-16 iterations
+	}
+	else if (count > 16 && count <= 32)
+	{
+		//code for 17-32 iterations
+	}
+	else if (count > 32 && count <= 48)
+	{
+		//code for 33-48 iterations
+	}
+	else if(count > 48 && count < 64)
+	{
+		//code for 49-64 iterations
+	}
+	else
+	{
+		//code for excess iterations
+	}
 }

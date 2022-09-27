@@ -86,6 +86,11 @@ int main()
 		}
 		// Clear screen
 		window.clear();
+		
+		// Draw VertexArray & Text
+		window.draw(ourArray);
+		window.draw(text1);
+
 		// Update the window
 		window.display();
 	}
