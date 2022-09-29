@@ -100,12 +100,10 @@ int main()
 				{
 					Vector2i points(j, i);
 					ourArray[j + i * static_cast<int>(width)].position = { (float)j,(float)i };
-
-					//points = window.mapPixelToCoords(Vector2i{ j,i }, plane1.getView()); currently gives compiler error:  "Error C2398 Element '1': conversion from 'float' to 'T' requires a narrowing conversion"
+					//Created vector2f to push points of complex plane into countIterations function
 					Vector2f Coord = window.mapPixelToCoords(points, plane1.getView());
-
-
 					count = plane1.countIterations(Coord);
+
 					Uint8 r;
 					Uint8 g;
 					Uint8 b;
