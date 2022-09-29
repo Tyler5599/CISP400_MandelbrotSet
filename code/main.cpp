@@ -67,7 +67,7 @@ int main()
 					plane1.zoomOut();
 					plane1.setCenter(points);
 				}
-				States::CALCULATING;
+				current = CALCULATING;
 			}
 			/*Handle Event::MouseMovedUse mapPixelToCoords to find the Vector2f coordinate in the ComplexPlane View that corresponds to the screen mouse location
 			setMouseLocation on the ComplexPlane object to store this coordinate This will be used later to display the mouse coordinates as it moves*/
@@ -104,7 +104,7 @@ int main()
 				}
 
 			}
-			States::DISPLAYING;
+			current = DISPLAYING;
 		}
 
 		// Draw VertexArray & Text
