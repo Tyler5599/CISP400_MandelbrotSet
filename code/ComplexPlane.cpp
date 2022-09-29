@@ -75,28 +75,38 @@ size_t ComplexPlane::countIterations(Vector2f)
 
 void ComplexPlane::iterationsToRGB(size_t count, Uint8 r, Uint8 g, Uint8 b)
 {
-	if (count == 1)
+	if (count > 0 && count <= 16)
 	{
-		//code for 1 iteration
-	}
-	else if (count > 1 && count <= 16)
-	{
-		//code for 2-16 iterations
+		//code for 1-16 iterations
+		r = 255;
+		g = 255;
+		b = 255;
 	}
 	else if (count > 16 && count <= 32)
 	{
 		//code for 17-32 iterations
+		r = 200;
+		g = 200;
+		b = 200;
 	}
 	else if (count > 32 && count <= 48)
 	{
 		//code for 33-48 iterations
+		r = 150;
+		g = 150;
+		b = 150;
 	}
 	else if(count > 48 && count < 64)
 	{
 		//code for 49-64 iterations
+		r = 50;
+		g = 50;
+		b = 50;
 	}
 	else
 	{
-		//code for excess iterations
+		r = 0;
+		g = 0;
+		b = 0;
 	}
 }
