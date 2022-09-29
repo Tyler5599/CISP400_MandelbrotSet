@@ -8,11 +8,11 @@ using namespace sf;
 int main()
 {
 	//variables
-	int aspect;
+	float aspect;
 	int width, height;
 	width = VideoMode::getDesktopMode().width;
 	height = VideoMode::getDesktopMode().height;
-	aspect = height * width;
+	aspect = width/height;
 	ComplexPlane plane1(aspect);
 	VertexArray ourArray;
 	ourArray.setPrimitiveType(Points);
@@ -55,18 +55,17 @@ int main()
 			if (event.type == Event::MouseButtonPressed)
 			{
 				Vector2f points;
-				points = window.mapPixelToCoords(Mouse::getPosition());
-				plane1.setCenter(points);
+				points = window.mapPixelToCoords(Mouse::getPosition(window), plane1.getView());
 
 				if (Mouse::isButtonPressed(Mouse::Left))
 				{
-					Vector2f points(Mouse::getPosition().x, Mouse::getPosition().y);
 					plane1.zoomIn();
+					plane1.setCenter(points);
 				}
 				if (Mouse::isButtonPressed(Mouse::Right))
 				{
-					Vector2f points(Mouse::getPosition().x, Mouse::getPosition().y);
 					plane1.zoomOut();
+					plane1.setCenter(points);
 				}
 				States::CALCULATING;
 			}
@@ -75,7 +74,7 @@ int main()
 			if (event.MouseMoved)
 			{
 				Vector2f points;
-				points = window.mapPixelToCoords(Mouse::getPosition());
+				points = window.mapPixelToCoords(Mouse::getPosition(window), plane1.getView());
 				plane1.setMouseLocation(points);
 			}
 			

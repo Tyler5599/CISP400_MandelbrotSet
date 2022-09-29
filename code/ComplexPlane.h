@@ -29,7 +29,7 @@ private:
 };
 
 
-const Uint8 MAX_ITER = 64;
+const size_t MAX_ITER = 64;
 const float BASE_WIDTH = 4.0;
 const float BASE_HEIGHT = 4.0;
 const float BASE_ZOOM = 0.5;
