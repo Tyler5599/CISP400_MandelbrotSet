@@ -10,7 +10,7 @@ using namespace sf;
 ComplexPlane::ComplexPlane(float aspectRatio)
 {
 	m_aspectRatio = aspectRatio;
-	m_view.setSize(BASE_WIDTH, -BASE_HEIGHT * aspectRatio);
+	m_view.setSize(BASE_WIDTH, -BASE_HEIGHT * m_aspectRatio);
 	m_view.setCenter(0.0, 0.0);
 	m_zoomCount = 0;
 }
@@ -46,29 +46,30 @@ View ComplexPlane::getView()
 	return m_view;
 }
 
-void ComplexPlane::loadText(Text&)
+void ComplexPlane::loadText(Text &text)
 {
-	Text;
+	//Doesn't work needs to pass in stream to text box after its passed but it acts like I am passing another object
 	stringstream mystream;
-	mystream << "Mandelbrot Set" << endl << "Center: (0,0)" << endl << "Cursor: (" << m_mouseLocation.x << "," << m_mouseLocation.y << ")" << endl 
-	<< "Left-click to Zoom in" << endl << "Right-click to Zoom out" << endl;
+	mystream << "Mandelbrot Set" << endl << "Center: (0,0)" << endl << "Cursor: (" << m_mouseLocation.x << "," << m_mouseLocation.y << ")" << endl
+		<< "Left-click to Zoom in" << endl << "Right-click to Zoom out" << endl;
+	string input = mystream.str();
+	text.setString(input);
 }
 
-size_t ComplexPlane::countIterations(Vector2f)
+size_t ComplexPlane::countIterations(Vector2f coord)
 {
-	//not done yet dont understand instructions
-	
-	int count = 0;
-	
-	for (int i = 0; i < MAX_ITER; i++)
-	{
-		complex<double> c(Vector2f().x, Vector2f().y);
-		complex<double> z(0, 0);
-		if (c != 2.0)
-		{
-			z = z * z + c;
-			count++;
-		}		
+	//works now
+	float x = coord.x;
+	float y = coord.y;
+
+	size_t count = 0;
+	complex<float> c(x,y);
+	complex<float> z(0, 0);
+
+	while(abs(z) < 2.0 && count != MAX_ITER)
+	{	
+		z = z * z + abs(c);
+		count++;
 	}
 	return count;
 }
@@ -78,30 +79,30 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 	if (count > 0 && count <= 16)
 	{
 		//code for 1-16 iterations
-		r = 255;
-		g = 255;
+		r = 0;
+		g = 0;
 		b = 255;
 	}
 	else if (count > 16 && count <= 32)
 	{
 		//code for 17-32 iterations
-		r = 200;
-		g = 200;
-		b = 200;
+		r = 204;
+		g = 0;
+		b = 204;
 	}
 	else if (count > 32 && count <= 48)
 	{
 		//code for 33-48 iterations
-		r = 150;
-		g = 150;
-		b = 150;
+		r = 255;
+		g = 255;
+		b = 0;
 	}
-	else if(count > 48 && count < 64)
+	else if (count > 48 && count < 64)
 	{
 		//code for 49-64 iterations
-		r = 50;
-		g = 50;
-		b = 50;
+		r = 255;
+		g = 0;
+		b = 0;
 	}
 	else
 	{
