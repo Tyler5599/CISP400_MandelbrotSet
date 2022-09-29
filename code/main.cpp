@@ -8,7 +8,8 @@ using namespace sf;
 int main()
 {
 	//variables
-	float aspect, width, height;
+	float aspect; 
+	float width, height;
 	width = VideoMode::getDesktopMode().width;
 	height = VideoMode::getDesktopMode().height;
 	aspect = height * width;
@@ -29,7 +30,7 @@ int main()
 	aspect = height / width;*/
 
 	//render window
-	VideoMode vm(height, width);
+	VideoMode vm(width, height);
 	RenderWindow window(vm, "Mandelbrot!!!", Style::Default);
 	
 	//Font disabled until font file added!!!!!!!!!
@@ -92,26 +93,29 @@ int main()
 		if (current == States::CALCULATING)
 		{
 			size_t count = 0;
-			Vector2f points;
-			for(float j = 0.0; j < height; j++)
+			
+			for(int j = 0; j < static_cast<int>(width); j++)
 			{
-				for (float i = 0.0; i < width; i++)
+				for (int i = 0; i < static_cast<int>(height); i++)
 				{
-					ourArray[j + i * width].position = { (float)j,(float)i };
+					Vector2i points(j, i);
+					ourArray[j + i * static_cast<int>(width)].position = { (float)j,(float)i };
 
 					//points = window.mapPixelToCoords(Vector2i{ j,i }, plane1.getView()); currently gives compiler error:  "Error C2398 Element '1': conversion from 'float' to 'T' requires a narrowing conversion"
-					points = window.mapPixelToCoords(Vector2i{ j,i }, plane1.getView());
+					Vector2f Coord = window.mapPixelToCoords(points, plane1.getView());
 
 
-					count = plane1.countIterations(points);
-					Uint8 r, g, b;
+					count = plane1.countIterations(Coord);
+					Uint8 r;
+					Uint8 g;
+					Uint8 b;
 					plane1.iterationsToRGB(count, r, g, b);
 					ourArray[j + i * width].color = { r,g,b };
 
 				}
 
-				States::DISPLAYING;
 			}
+			States::DISPLAYING;
 		}
 		// Clear screen
 		window.clear();
