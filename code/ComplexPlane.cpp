@@ -46,11 +46,11 @@ View ComplexPlane::getView()
 	return m_view;
 }
 
-void ComplexPlane::loadText(Text &text)
+void ComplexPlane::loadText(Text &text, Vector2f coord)
 {
 	//Doesn't work needs to pass in stream to text box after its passed but it acts like I am passing another object
 	stringstream mystream;
-	mystream << "Mandelbrot Set" << endl << "Center: (0,0)" << endl << "Cursor: (" << m_mouseLocation.x << "," << m_mouseLocation.y << ")" << endl
+	mystream << "Mandelbrot Set" << endl << "Center: (" << coord.x << "," << coord.y << ")" << endl << "Cursor: (" << m_mouseLocation.x << "," << m_mouseLocation.y << ")" << endl
 		<< "Left-click to Zoom in" << endl << "Right-click to Zoom out" << endl;
 	string input = mystream.str();
 	text.setString(input);

@@ -16,7 +16,7 @@ public:
 	void setCenter(Vector2f coord);
 	View getView();
 	void setMouseLocation(Vector2f coord);
-	void loadText(Text &text);
+	void loadText(Text &text, Vector2f);
 	size_t countIterations(Vector2f coord);
 	void iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b);
 

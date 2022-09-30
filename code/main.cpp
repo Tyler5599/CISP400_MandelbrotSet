@@ -27,6 +27,8 @@ int main()
 	VideoMode vm(width, height);
 	RenderWindow window(vm, "Mandelbrot!!!", Style::Default);
 
+	//Vector2f for loading center point on screen
+	Vector2f textCoord;
 	//Font disabled until font file added!!!!!!!!!
 	Font font;
 	font.loadFromFile("arial.ttf");
@@ -60,11 +62,13 @@ int main()
 				if (Mouse::isButtonPressed(Mouse::Left))
 				{
 					plane1.zoomIn();
+					textCoord = points;
 					plane1.setCenter(points);
 				}
 				if (Mouse::isButtonPressed(Mouse::Right))
 				{
 					plane1.zoomOut();
+					textCoord = points;
 					plane1.setCenter(points);
 				}
 				current = CALCULATING;
@@ -110,7 +114,7 @@ int main()
 		// Draw VertexArray & Text
 		window.clear();
 		window.draw(ourArray);
-		plane1.loadText(text1);
+		plane1.loadText(text1, textCoord);
 		window.draw(text1);
 		//window.draw(text1);
 
