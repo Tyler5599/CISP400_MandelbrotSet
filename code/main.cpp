@@ -9,10 +9,10 @@ int main()
 {
 	//variables
 	float aspect;
-	int width, height;
+	float width, height;
 	width = VideoMode::getDesktopMode().width;
 	height = VideoMode::getDesktopMode().height;
-	aspect = width/height;
+	aspect = height/width;
 	ComplexPlane plane1(aspect);
 	VertexArray ourArray;
 	ourArray.setPrimitiveType(Points);

@@ -79,30 +79,30 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 	if (count > 0 && count <= 16)
 	{
 		//code for 1-16 iterations
-		r = 255 - (count * 15);
-		g = 255;
-		b = 255;
+		r = 0;
+		g = 0 + (count * 14);
+		b = 0 + (count * 14);
 	}
 	else if (count > 16 && count <= 32)
 	{
 		//code for 17-32 iterations
 		r = 0;
-		g = 255;
-		b = 255 - (count * 15);
+		g = 224 - ((count % 16) * 14);
+		b = 224;
 	}
 	else if (count > 32 && count <= 48)
 	{
 		//code for 33-48 iterations
-		r = 0 + (count * 15);
-		g = 255 - (count * 15);
-		b = 0;
+		r = 0;
+		g = 0 + ((count % 32) * 7);
+		b = 224 - ((count % 32) * 7);
 	}
 	else if (count > 48 && count < 64)
 	{
 		//code for 49-64 iterations
-		r = 255 - (count * 15);
-		g = 0;
-		b = 0;
+		r = 0 + ((count % 48) * 7);
+		g = 112;
+		b = 112;
 	}
 	else
 	{
