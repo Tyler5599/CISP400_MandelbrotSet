@@ -10,7 +10,7 @@ using namespace sf;
 ComplexPlane::ComplexPlane(float aspectRatio)
 {
 	m_aspectRatio = aspectRatio;
-	m_view.setSize(BASE_WIDTH, -BASE_HEIGHT * m_aspectRatio);
+	m_view.setSize(BASE_WIDTH, BASE_HEIGHT * m_aspectRatio);
 	m_view.setCenter(0.0, 0.0);
 	m_zoomCount = 0;
 }
@@ -79,30 +79,30 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 	if (count > 0 && count <= 16)
 	{
 		//code for 1-16 iterations
-		r = 255 - (count * 4);
-		g = 255 - (count * 4);
-		b = 255 - (count * 4);
+		r = 255 - (count * 15);
+		g = 255;
+		b = 255;
 	}
 	else if (count > 16 && count <= 32)
 	{
 		//code for 17-32 iterations
-		r = 191 - (count * 4);
-		g = 191 - (count * 4);
-		b = 191 - (count * 4);
+		r = 0;
+		g = 255;
+		b = 255 - (count * 15);
 	}
 	else if (count > 32 && count <= 48)
 	{
 		//code for 33-48 iterations
-		r = 127 - (count * 4);
-		g = 127 - (count * 4);
-		b = 127 - (count * 4);
+		r = 0 + (count * 15);
+		g = 255 - (count * 15);
+		b = 0;
 	}
 	else if (count > 48 && count < 64)
 	{
 		//code for 49-64 iterations
-		r = 63 - (count * 2);
-		g = 63 - (count * 2);
-		b = 63 - (count * 2);
+		r = 255 - (count * 15);
+		g = 0;
+		b = 0;
 	}
 	else
 	{
