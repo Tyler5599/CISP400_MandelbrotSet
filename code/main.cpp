@@ -99,6 +99,7 @@ int main()
 					Vector2f Coord = window.mapPixelToCoords(points, plane1.getView());
 					count = plane1.countIterations(Coord);
 
+
 					Uint8 r;
 					Uint8 g;
 					Uint8 b;
